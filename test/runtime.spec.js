@@ -3,13 +3,23 @@ import expect from 'expect';
 
 describe('runtime test', () => {
   it('css-modules loader should work', () => {
-    const css = require('./assets/style.css');
-    expect(css).toEqual({ main: 'style__main--3hKHQ', item: 'style__item--24uGR' });
+    const css = require('./assets/withoutExtractText/style.css');
+    expect(css).toEqual({ item: 'style__item--114y2', main: 'style__main--FyeeK' });
   });
 
   it('css-modules + sass loaders should work', () => {
-    const css = require('./assets/style.sass');
-    expect(css).toEqual({ item: 'style__item--151LE', main: 'style__main--2KvR7' });
+    const css = require('./assets/withoutExtractText/style.sass');
+    expect(css).toEqual({ item: 'style__item--3xWFz', main: 'style__main--2G5AL' });
+  });
+
+  it('css-modules loader with ExtractText plugin should work', () => {
+    const css = require('./assets/withExtractText/style.css');
+    expect(css).toEqual({ itemET: 'style__itemET--2RhIj', mainET: 'style__mainET--351DK' });
+  });
+
+  it('css-modules + sass loader with ExtractText plugin should work', () => {
+    const css = require('./assets/withExtractText/style.sass');
+    expect(css).toEqual({ itemET: 'style__itemET--tSpra', mainET: 'style__mainET--1ov5K' });
   });
 
   it('file loader should work', () => {
