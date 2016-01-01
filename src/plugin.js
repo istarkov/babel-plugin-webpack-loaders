@@ -2,12 +2,14 @@ import { resolve, dirname } from 'path';
 import { parse } from 'babylon';
 import traverse from 'babel-traverse';
 import runWebPackSync from './runWebPackSync';
+import { StringLiteral } from 'babel-types';
 import 'babel-register';
 
-const processWebPackResult = (webPackResult) => {
+const processWebPackResult = (webPackResult, { output: { publicPath = '' } = {} } = {}) => {
   const webpackResultAst = parse(webPackResult);
   let expr = null;
 
+  // without ExtractTextPlugin css-loader result looks like `blabla.locals = {...blbala}`
   traverse(webpackResultAst, {
     FunctionExpression(pathFn) {
       if (pathFn.node.params.length >= 2 && pathFn.node.params[1].name === 'exports') {
@@ -22,15 +24,28 @@ const processWebPackResult = (webPackResult) => {
     },
   });
 
+  // with ExtractTextPlugin css-loader result looks like `module.exports = {...blbala}`
   if (expr === null) {
     traverse(webpackResultAst, {
       FunctionExpression(pathFn) {
-        if (pathFn.node.params.length === 2 && pathFn.node.params[1].name === 'exports') {
+        if (pathFn.node.params.length >= 2 && pathFn.node.params[1].name === 'exports') {
           pathFn.traverse({
             AssignmentExpression(path) {
               if (path.node.left.property && path.node.left.property.name === 'exports') {
                 expr = path.node.right;
               }
+            },
+            BinaryExpression(pathBin) {
+              pathBin.traverse({
+                MemberExpression(pathM) {
+                  if (
+                    pathM.node.object.name === '__webpack_require__' &&
+                    pathM.node.property.name === 'p'
+                  ) {
+                    pathM.replaceWith(StringLiteral(publicPath)); // eslint-disable-line
+                  }
+                },
+              });
             },
           });
         }
@@ -58,7 +73,7 @@ export default function ({ types: t }) {
         path,
         {
           file: { opts: { filenameRelative } },
-          opts: { config: configPath = './webpack.config.js' } = {},
+          opts: { config: configPath = './webpack.config.js', verbose = true } = {},
         }
       ) {
         const { callee: { name: calleeName }, arguments: args } = path.node;
@@ -84,9 +99,9 @@ export default function ({ types: t }) {
           }
 
           const fileAbsPath = resolve(process.cwd(), dirname(filenameRelative), filePath);
-          const webPackResult = runWebPackSync({ path: fileAbsPath, configPath, config });
+          const webPackResult = runWebPackSync({ path: fileAbsPath, configPath, config, verbose });
 
-          const expr = processWebPackResult(webPackResult);
+          const expr = processWebPackResult(webPackResult, config);
           path.replaceWith(expr);
         }
       },

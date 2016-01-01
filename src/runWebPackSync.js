@@ -3,7 +3,7 @@ import { readFileSync } from 'fs';
 import rimraf from 'rimraf';
 import colors from 'colors/safe';
 
-export default ({ path, configPath, config }) => {
+export default ({ path, configPath, config, verbose }) => {
   const DEFAULT_OUTPUT_PATH = '/tmp';
 
   const webPackPath = require.resolve('webpack/bin/webpack');
@@ -15,12 +15,14 @@ export default ({ path, configPath, config }) => {
   const webPackStdOut = require('child_process')
     .execFileSync(webPackPath, [path, outPath, '--config', configPath, '--colors']);
 
-  console.log( // eslint-disable-line
-    colors.blue(`Webpack stdout for ${path}\n`) +
-    colors.blue(`---------\n`) +
-    `${webPackStdOut}\n` +
-    colors.blue(`---------`)
-  );
+  if (verbose) {
+    console.log( // eslint-disable-line
+      colors.blue(`Webpack stdout for ${path}\n`) +
+      colors.blue(`---------\n`) +
+      `${webPackStdOut}\n` +
+      colors.blue(`---------`)
+    );
+  }
 
   const webPackResult = readFileSync(outPath, { encoding: 'utf8' });
   rimraf.sync(outPath);
