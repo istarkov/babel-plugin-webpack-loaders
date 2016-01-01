@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/istarkov/babel-plugin-webpack-loaders.svg?branch=master)](https://travis-ci.org/istarkov/babel-plugin-webpack-loaders)
+
 # babel-plugin-webpack-loaders
 
 
