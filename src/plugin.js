@@ -3,7 +3,6 @@ import { parse } from 'babylon';
 import traverse from 'babel-traverse';
 import runWebPackSync from './runWebPackSync';
 import { StringLiteral } from 'babel-types';
-import 'babel-register';
 
 const processWebPackResult = (webPackResult, { output: { publicPath = '' } = {} } = {}) => {
   const webpackResultAst = parse(webPackResult);

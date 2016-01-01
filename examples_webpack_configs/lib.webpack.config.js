@@ -6,8 +6,8 @@ module.exports = {
   output: {
     // for babel plugin
     libraryTarget: 'commonjs2',
-    // where to place css
-    path: path.join(__dirname, '../build/myCoolLibrary'),
+    // where to place webpack files
+    path: path.join(__dirname, '../build/myCoolLibrary/assets'),
     // for url-loader if limit exceeded to set publicPath
     publicPath: '/assets/',
   },

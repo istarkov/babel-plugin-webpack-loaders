@@ -3,7 +3,7 @@
   "env": {
     "EXAMPLES_LIB": {
       "plugins": [
-        ["./lib/plugin.js", {"config": "./examples_webpack_configs/webpack.config.js"}]
+        ["./lib/plugin.js", {"config": "./examples_webpack_configs/lib.webpack.config.js"}]
       ]
     },
     "EXAMPLES_RUN": {
@@ -16,6 +16,17 @@
           }
         ]
       ]
-    }
+    },
+    "TEST": {
+      "plugins": [
+        [
+          "./lib/plugin.js",
+          {
+            "config": "./test/runtime.webpack.config.js",
+            "verbose": false,
+          }
+        ]
+      ]
+    },
   }
 }
