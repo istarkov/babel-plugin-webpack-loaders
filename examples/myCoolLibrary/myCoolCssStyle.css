@@ -1,0 +1,7 @@
+.cssmain {
+  display: flex;
+}
+
+.cssitem {
+  flex: 1 1 auto;
+}

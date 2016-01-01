@@ -31,8 +31,22 @@ module.exports = {
         ),
       },
       {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract(
+          'style-loader',
+          [
+            'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]--[hash:base64:5]',
+            'postcss-loader',
+          ]
+        ),
+      },
+      {
         test: /\.png$/,
         loaders: ['url-loader?limit=7000'],
+      },
+      {
+        test: /\.txt$/,
+        loaders: ['file-loader'],
       },
     ],
   },
