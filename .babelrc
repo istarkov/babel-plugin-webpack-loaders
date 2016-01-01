@@ -1,9 +1,14 @@
 {
   "presets": ["react", "es2015", "stage-0"],
   "env": {
-    "TEST": {
+    "EXAMPLES_LIB": {
       "plugins": [
-        ["./lib/plugin.js", {"config": "./examples/webpack.config.js"}]
+        ["./lib/plugin.js", {"config": "./examples_webpack_configs/webpack.config.js"}]
+      ]
+    },
+    "EXAMPLES_RUN": {
+      "plugins": [
+        ["./lib/plugin.js", {"config": "./examples_webpack_configs/run.webpack.config.js"}]
       ]
     }
   }

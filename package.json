@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src --out-dir lib",
-    "clean": "rimraf lib dist",
+    "clean": "rimraf lib",
     "lint": "eslint src test examples",
-    "_plugin": "npm run clean && npm run build && babel --plugins ./lib/plugin.js ./examples/tmp.js",
-    "plugin": "npm run clean && npm run build && NODE_ENV=TEST babel ./examples/tmp.js",
-    "plugin-run": "npm run clean && npm run build && NODE_ENV=TEST babel-node ./examples/tmp.js"
+    "prepublish": "npm run lint && npm run clean && npm run build",
+    "example-clean": "rimraf build",
+    "example-build": "npm run example-clean && NODE_ENV=EXAMPLES_LIB babel examples/myCoolLibrary --out-dir build/myCoolLibrary",
+    "example-run": "NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js"
   },
   "author": "",
   "license": "MIT",
@@ -17,9 +18,11 @@
     "babel": "^6.3.26",
     "babel-register": "^6.3.13",
     "babylon": "^6.3.26",
+    "colors": "^1.1.2",
     "webpack": "^1.12.9"
   },
   "devDependencies": {
+    "autoprefixer": "^6.2.3",
     "babel-cli": "^6.3.17",
     "babel-eslint": "^4.1.6",
     "babel-polyfill": "^6.3.14",
@@ -35,6 +38,7 @@
     "file-loader": "^0.8.5",
     "json-loader": "^0.5.4",
     "node-sass": "^3.4.2",
+    "postcss-loader": "^0.8.0",
     "rimraf": "^2.5.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
