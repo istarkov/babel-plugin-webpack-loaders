@@ -10,7 +10,8 @@
     "prepublish": "npm run lint && npm run clean && npm run build",
     "example-clean": "rimraf build",
     "example-build": "npm run example-clean && NODE_ENV=EXAMPLES_LIB babel examples/myCoolLibrary --out-dir build/myCoolLibrary",
-    "example-run": "NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js"
+    "example-run": "NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js",
+    "test-run": "BABEL_DISABLE_CACHE=1 NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js"
   },
   "author": "",
   "license": "MIT",

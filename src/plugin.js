@@ -7,17 +7,36 @@ import 'babel-register';
 const processWebPackResult = (webPackResult) => {
   const webpackResultAst = parse(webPackResult);
   let expr = null;
+
   traverse(webpackResultAst, {
     FunctionExpression(pathFn) {
-      if (pathFn.node.params.length === 2 && pathFn.node.params[1].name === 'exports') {
+      if (pathFn.node.params.length >= 2 && pathFn.node.params[1].name === 'exports') {
         pathFn.traverse({
           AssignmentExpression(path) {
-            expr = path.node.right;
+            if (path.node.left.property && path.node.left.property.name === 'locals') {
+              expr = path.node.right;
+            }
           },
         });
       }
     },
   });
+
+  if (expr === null) {
+    traverse(webpackResultAst, {
+      FunctionExpression(pathFn) {
+        if (pathFn.node.params.length === 2 && pathFn.node.params[1].name === 'exports') {
+          pathFn.traverse({
+            AssignmentExpression(path) {
+              if (path.node.left.property && path.node.left.property.name === 'exports') {
+                expr = path.node.right;
+              }
+            },
+          });
+        }
+      },
+    });
+  }
 
   return expr;
 };
