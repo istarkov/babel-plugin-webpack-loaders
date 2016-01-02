@@ -1,0 +1,11 @@
+.myCoolCssStyle__cssmain--2YhBM {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.myCoolCssStyle__cssitem--1sTGV {
+  -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+}
