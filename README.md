@@ -52,6 +52,7 @@ module.exports = {
 ```
 
 You need to add to `.babelrc` next lines like [here](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/.babelrc#L9-L19)
+(_set "verbose": false if you don't want webpack output_)
 
 ```json
 {
