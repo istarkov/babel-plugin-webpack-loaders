@@ -139,7 +139,7 @@ npm install babel-plugin-webpack-loaders
 
 The source of inspiration of this plugin is [babel-plugin-css-modules-transform](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform)
 
-- But I love to write css with sass (sometimes with less or with scss), and it's easy to configure with webpack loaders,
+- But I love to write css with sass (sometimes with less or with scss), and it's easy to configure all these things with webpack loaders,
 with full support of images and fonts preloading as base64 (using url-loader).
 
 - Webpack already has a lot of loaders with a lot of params, so I could reuse them
