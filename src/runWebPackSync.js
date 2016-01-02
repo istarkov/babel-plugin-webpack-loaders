@@ -13,7 +13,7 @@ export default ({ path, configPath, config, verbose }) => {
   // I need to run webpack via execFileSync because I have not find the way how to run
   // babel visitors asynchronously or run webpack compile synchronously
   const webPackStdOut = require('child_process')
-    .execFileSync(webPackPath, [path, outPath, '--config', configPath, '--colors']);
+    .execFileSync(webPackPath, [path, outPath, '--config', configPath, '--colors', '--bail']);
 
   if (verbose) {
     console.log( // eslint-disable-line

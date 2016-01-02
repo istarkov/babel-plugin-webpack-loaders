@@ -20,6 +20,12 @@ build it with `npm run example-build` and execute with `node build/myCoolLibrary
 
 # How it works
 
+Install
+
+```shell
+npm install --save-dev babel-cli css-loader postcss-loader style-loader babel-plugin-webpack-loaders
+```
+
 You need to create webpack config file, like [this](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples_webpack_configs/run.webpack.config.js)
 
 ```javascript
@@ -57,7 +63,7 @@ You need to add to `.babelrc` next lines like [here](https://github.com/istarkov
           "babel-plugin-webpack-loaders",
           {
             "config": "./webpack.config.js",
-            "verbose": false,
+            "verbose": true,
           }
         ]
       ]
@@ -142,3 +148,8 @@ Plugin tests all `require` pathes with [test regexps](https://github.com/istarko
 - using babel-parse plugin [parses webpack output](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/src/plugin.js#L7),
 
 - plugin [replaces](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/src/plugin.js#L104) require ast with parse ast output.
+
+# Verbose mode in config
+
+By default babel caches compiled files, if you need to view webpack stdout output run commands with
+`BABEL_DISABLE_CACHE=1` prefix
