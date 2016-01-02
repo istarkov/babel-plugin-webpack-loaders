@@ -25,7 +25,7 @@ Look at [minimal-example](https://github.com/istarkov/minimal-example-for-babel-
 
 - You need to create [webpack config](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders/blob/master/webpack.config.js) file.
 
-- You need add to `.babelrc` [next lines](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders/blob/master/webpack.config.js)
+- You need add to `.babelrc` [next lines](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders/blob/master/.babelrc#L1-L16)
 
 - Now you can run [next javascript file](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders/blob/master/example.js)
 
