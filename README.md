@@ -4,6 +4,7 @@
 
 This babel 6 plugin allows you to use webpack loaders in babel.
 It's now easy to run universal apps on the server without additional build steps and to create libraries as usual with `babel src --out-dir lib` command.
+It just replaces `require - import` statements with `webpack loaders` results. Look at babel build output  [diff](https://github.com/istarkov/babel-plugin-webpack-loaders/commit/2a7a6d1e61ea3d052b34afd5c3abc46f075d277c#diff-4) to get the idea.
 
 For now this plugin is at alpha quality and tested on webpack loaders I use in my projects.
 These loaders are `file-loader`, `url-loader`, `css-loader`, `style-loader`, `sass-loader`, `postcss-loader`.
