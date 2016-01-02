@@ -104,7 +104,7 @@ By default babel caches compiled files, if you need to view webpack stdout outpu
 
 # Thanks to
 
-[Felix Kling](https://github.com/fkling) and his [astexplorer](https://github.com/fkling https://github.com/fkling/astexplorer)
+[Felix Kling](https://github.com/fkling) and his [astexplorer](https://github.com/fkling/astexplorer)
 
 [James Kyle](https://github.com/thejameskyle) and his [babel-plugin-handbook](https://github.com/thejameskyle/babel-plugin-handbook)
 
