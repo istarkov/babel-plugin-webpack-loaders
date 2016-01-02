@@ -74,7 +74,10 @@ npm run test
 The source of inspiration of this plugin is [babel-plugin-css-modules-transform](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform)
 
 - But I love to write css with sass
-- I just like webpack loaders (chaining, plugins, setting) .
+- I just like webpack and its loaders (chaining, plugins, settings).
+- I want to opensource an UI library which heavily uses css-modules + sass and other webpack loaders.
+  Library contains of many small modules and every module must be available to users independently like `lodash/blabla/blublu`.
+  Now I can replace heavy build file with this plugin and just one command `babel src --out-dir lib`
 
 # How plugin works internally
 
