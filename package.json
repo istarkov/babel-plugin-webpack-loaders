@@ -1,7 +1,9 @@
 {
   "name": "webpack-for-babel-plugin",
   "version": "0.0.2",
-  "description": "webpack plugin for babel 6",
+  "description": "babel 6 plugin which allows to use webpack loaders",
+  "author": "Ivan Starkov <istarkov@gmail.com> (http://github.com/istarkov)",
+  "license": "MIT",
   "main": "lib/plugin.js",
   "scripts": {
     "build": "babel src --out-dir lib",
@@ -13,8 +15,17 @@
     "prepublish": "npm run lint && npm run clean && npm run build",
     "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha"
   },
-  "author": "",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaearon/react-transform-boilerplate.git"
+  },
+  "keywords": [
+    "babel",
+    "webpack",
+    "loader",
+    "css-modules",
+    "css-loader"
+  ],
   "dependencies": {
     "babel": "^6.3.26",
     "babel-preset-es2015": "^6.3.13",
