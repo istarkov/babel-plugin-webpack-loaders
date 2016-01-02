@@ -9,7 +9,7 @@ For now this plugin is at alpha quality and tested on webpack loaders I use in m
 These loaders are `file-loader`, `url-loader`, `css-loader`, `style-loader`, `sass-loader`, `postcss-loader`.
 Plugin supports all webpack features like loaders chaining, webpack plugins, and all loaders params. It's easy because this plugin just uses webpack.
 
-There are two examples here:
+There are three examples here:
 
 - [runtime css-modules example](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples/runExample/run.js) with simple [webpack config](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples_webpack_configs/run.webpack.config.js),
 run it with `npm run example-run`
@@ -17,6 +17,7 @@ run it with `npm run example-run`
 - [library example](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples/myCoolLibrary/myCoolLibrary.js) with [multi loaders-plugins webpack config](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples_webpack_configs/lib.webpack.config.js),
 build it with `npm run example-build` and execute with `node build/myCoolLibrary/myCoolLibrary.js`, assets and code will be placed at `./build/myCoolLibrary` folder.
 
+- [minimal-example-standalone-repo](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders)
 
 # How it works
 
@@ -25,6 +26,8 @@ Install
 ```shell
 npm install --save-dev babel-cli css-loader postcss-loader style-loader babel-plugin-webpack-loaders
 ```
+
+or just clone [minimal-example](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders)
 
 You need to create webpack config file, like [this](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples_webpack_configs/run.webpack.config.js)
 
@@ -57,13 +60,13 @@ You need to add to `.babelrc` next lines like [here](https://github.com/istarkov
 {
   "presets": ["es2015"],
   "env": {
-    "EXAMPLES_RUN": {
+    "EXAMPLE": {
       "plugins": [
         [
           "babel-plugin-webpack-loaders",
           {
             "config": "./webpack.config.js",
-            "verbose": true,
+            "verbose": false,
           }
         ]
       ]
@@ -75,6 +78,7 @@ You need to add to `.babelrc` next lines like [here](https://github.com/istarkov
 And now you can include [css](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples/runExample/some.css) with support of css-modules into [js file](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples/runExample/run.js)
 
 ```css
+/* example.css */
 .main {
   display: flex;
 }
@@ -85,14 +89,15 @@ And now you can include [css](https://github.com/istarkov/babel-plugin-webpack-l
 ```
 
 ```javascript
-import css from './some.css';
-console.log(css);
+// example.js
+import css from './example.css';
+console.log('css-modules result:', css);
 ```
 
-Run `NODE_ENV=EXAMPLES_RUN babel-node your.js` and you get console output
+Run `NODE_ENV=EXAMPLE ./node_modules/.bin/babel-node ./example.js` and you get console output
 
 ```javascript
-{ main: 'some__main--2kmsh', item: 'some__item--ocDmM' }
+css-modules result: { main: 'example__main--zYOjd', item: 'example__item--W9XoN' }
 ```
 
 you can test this and other examples just cloning this repo and running next commands
@@ -127,6 +132,8 @@ npm install babel-plugin-webpack-loaders
 [.babelrc example](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/.babelrc)
 
 [tests](https://github.com/istarkov/babel-plugin-webpack-loaders/tree/master/test)
+
+[minimal-example-repo](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders)
 
 # Why
 
