@@ -90,3 +90,11 @@ Plugin tests all `require` pathes with [test regexps](https://github.com/istarko
 
 By default babel caches compiled files, if you need to view webpack stdout output, run commands with
 `BABEL_DISABLE_CACHE=1` prefix
+
+# Thanks to
+
+[Felix Kling](https://github.com/fkling) and his [astexplorer](https://github.com/fkling https://github.com/fkling/astexplorer)
+
+[James Kyle](https://github.com/thejameskyle) and his [babel-plugin-handbook](https://github.com/thejameskyle/babel-plugin-handbook)
+
+[Michal Kvasničák](https://github.com/michalkvasnicak) and his [babel-plugin-css-modules-transform](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform)
