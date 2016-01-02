@@ -122,7 +122,7 @@ with full support of images and fonts preloading as base64 (using url-loader).
 
 - Webpack already has a lot of loaders with a lot of params, so I could reuse them
 
-- I have a lot of webpack configs there all troubles with params and settings was solved
+- I have a lot of webpack configs where all troubles with params and settings was solved
 
 # How plugin works internally
 
