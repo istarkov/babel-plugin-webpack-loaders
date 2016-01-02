@@ -2,7 +2,7 @@
   "name": "webpack-for-babel-plugin",
   "version": "0.0.1",
   "description": "webpack plugin for babel 6",
-  "main": "index.js",
+  "main": "lib/plugin.js",
   "scripts": {
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib",
