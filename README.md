@@ -151,5 +151,5 @@ Plugin tests all `require` pathes with [test regexps](https://github.com/istarko
 
 # Verbose mode in config
 
-By default babel caches compiled files, if you need to view webpack stdout output run commands with
+By default babel caches compiled files, if you need to view webpack stdout output, run commands with
 `BABEL_DISABLE_CACHE=1` prefix
