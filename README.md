@@ -7,7 +7,7 @@ It's now easy to run universal apps on the server without additional build steps
 
 For now this plugin is at alpha quality and tested on webpack loaders I use in my projects.
 These loaders are `file-loader`, `url-loader`, `css-loader`, `style-loader`, `sass-loader`, `postcss-loader`.
-Plugin supports all webpack features like loaders chaining, webpack plugins, and all loaders params. It's easy because this plugin just use webpack.
+Plugin supports all webpack features like loaders chaining, webpack plugins, and all loaders params. It's easy because this plugin just uses webpack.
 
 # How it works
 
