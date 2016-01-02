@@ -111,6 +111,8 @@ npm install babel-plugin-webpack-loaders
 
 [.babelrc example](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/.babelrc)
 
+[tests](https://github.com/istarkov/babel-plugin-webpack-loaders/tree/master/test)
+
 # Why
 
 The source of inspiration of this plugin is [babel-plugin-css-modules-transform](https://github.com/michalkvasnicak/babel-plugin-css-modules-transform)
