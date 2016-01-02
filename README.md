@@ -17,6 +17,8 @@ run it with `npm run example-run`
 - [library example](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples/myCoolLibrary/myCoolLibrary.js) with [multi loaders-plugins webpack config](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples_webpack_configs/lib.webpack.config.js),
 build it with `npm run example-build` and execute with `node build/myCoolLibrary/myCoolLibrary.js`, assets and code will be placed at `./build/myCoolLibrary` folder.
 
+  [Diff example of babel library build output without and with plugin](https://github.com/istarkov/babel-plugin-webpack-loaders/commit/2a7a6d1e61ea3d052b34afd5c3abc46f075d277c#diff-4)
+
 - [minimal-example-standalone-repo](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders)
 
 # How it works
@@ -40,6 +42,11 @@ Look at [minimal-example](https://github.com/istarkov/minimal-example-for-babel-
   ```javascript
   css-modules result: { main: 'example__main--zYOjd', item: 'example__item--W9XoN' }
   ```
+
+- Here I placed [output diff](https://github.com/istarkov/babel-plugin-webpack-loaders/commit/2a7a6d1e61ea3d052b34afd5c3abc46f075d277c#diff-4)
+of this [babel library](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/examples/myCoolLibrary/myCoolLibrary.js) build without and with plugin.
+As you can see plugin just replaces require with loaders results. [All loaders](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/example-output/build/myCoolLibrary/assets/myCoolStyle.css#L12) and [plugins](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/example-output/build/myCoolLibrary/assets/myCoolStyle.css#L4) applied to generated assets
+
 
 # Install
 
