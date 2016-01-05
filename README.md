@@ -22,6 +22,11 @@ build it with `npm run example-build` and execute with `node build/myCoolLibrary
 
 - [minimal-example-standalone-repo](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders)
 
+## Warning
+
+**Do not run this plugin as part of webpack frontend configuration. This plugin is intended only for backend compilation.**
+
+
 # How it works
 
 Look at [minimal-example](https://github.com/istarkov/minimal-example-for-babel-plugin-webpack-loaders)
