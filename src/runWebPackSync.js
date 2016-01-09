@@ -2,9 +2,10 @@ import { join } from 'path';
 import { readFileSync } from 'fs';
 import rimraf from 'rimraf';
 import colors from 'colors/safe';
+import { tmpdir } from 'os';
 
 export default ({ path, configPath, config, verbose }) => {
-  const DEFAULT_OUTPUT_PATH = '/tmp';
+  const DEFAULT_OUTPUT_PATH = tmpdir();
 
   const webPackPath = require.resolve('webpack/bin/webpack');
   const rnd = `${(new Date()).getTime()}_${Math.round(1000000 * Math.random())}`;
