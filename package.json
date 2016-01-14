@@ -6,13 +6,13 @@
   "license": "MIT",
   "main": "lib/plugin.js",
   "scripts": {
+    "prebuild": "rimraf lib",
     "build": "babel src --out-dir lib",
-    "clean": "rimraf lib",
-    "example-clean": "rimraf build",
-    "example-build": "npm run example-clean && NODE_ENV=EXAMPLES_LIB babel examples/myCoolLibrary --out-dir build/myCoolLibrary",
+    "preexample-build": "rimraf build",
+    "example-build": "NODE_ENV=EXAMPLES_LIB babel examples/myCoolLibrary --out-dir build/myCoolLibrary",
     "example-run": "NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js",
     "lint": "eslint src test examples",
-    "prepublish": "npm run lint && npm run clean && npm run build",
+    "prepublish": "npm run lint && npm run build",
     "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha"
   },
   "repository": {
