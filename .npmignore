@@ -1,3 +1,5 @@
+/.*/
+/.*
 .DS_Store
 *.log
 src
@@ -5,3 +7,4 @@ test
 examples
 examples_webpack_configs
 build
+/appveyor.yml
