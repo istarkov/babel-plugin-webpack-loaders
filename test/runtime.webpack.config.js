@@ -22,7 +22,9 @@ module.exports = {
           'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]',
           'postcss-loader',
         ],
-        include: [path.join(__dirname, 'assets/withoutExtractText')],
+        include: [
+          path.join(__dirname, 'assets/withoutExtractText'),
+        ],
       },
       {
         test: /\.sass$/,
@@ -32,7 +34,9 @@ module.exports = {
           'postcss-loader',
           `sass-loader?precision=10&indentedSyntax=sass`,
         ],
-        include: [path.join(__dirname, 'assets/withoutExtractText')],
+        include: [
+          path.join(__dirname, 'assets/withoutExtractText'),
+        ],
       },
       {
         test: /\.css$/,
@@ -43,7 +47,10 @@ module.exports = {
             'postcss-loader',
           ]
         ),
-        include: [path.join(__dirname, 'assets/withExtractText')],
+        include: [
+          path.join(__dirname, 'assets/withExtractText'),
+          path.join(__dirname, '../node_modules/normalize.css'),
+        ],
       },
       {
         test: /\.sass$/,
