@@ -3,6 +3,7 @@ import myCoolCssStyle from './myCoolCssStyle.css';
 import png from './myCoolIstarkov.png';
 import pngBig from './myCoolIstarkovBig.png';
 import txt from './myCoolTextFile.txt';
+import 'normalize.css/normalize.css';
 
 console.log(  // eslint-disable-line no-console
 `main = ${main}, item = ${item};
