@@ -38,4 +38,9 @@ describe('runtime test', () => {
     const text = require('./assets/urlBig.bin');
     expect(text).toEqual('urlBig.bin');
   });
+
+  it('resolve should work as node resolve', () => {
+    const text = require('normalize.css/normalize.css');
+    expect(text).toEqual(undefined);
+  });
 });
