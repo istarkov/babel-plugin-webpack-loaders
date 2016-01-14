@@ -19,7 +19,7 @@ module.exports = {
         test: /\.css$/,
         loaders: [
           'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]',
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
           'postcss-loader',
         ],
         include: [
@@ -30,7 +30,7 @@ module.exports = {
         test: /\.sass$/,
         loaders: [
           'style-loader',
-          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]--[hash:base64:5]',
+          'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
           'postcss-loader',
           `sass-loader?precision=10&indentedSyntax=sass`,
         ],
@@ -43,7 +43,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract(
           'style-loader',
           [
-            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]',
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
             'postcss-loader',
           ]
         ),
@@ -57,7 +57,7 @@ module.exports = {
         loader: ExtractTextPlugin.extract(
           'style-loader',
           [
-            'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]--[hash:base64:5]',
+            'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
             'postcss-loader',
             `sass-loader?precision=10&indentedSyntax=sass`,
           ]
