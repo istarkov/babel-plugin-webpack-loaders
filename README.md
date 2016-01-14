@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/istarkov/babel-plugin-webpack-loaders.svg?branch=master)](https://travis-ci.org/istarkov/babel-plugin-webpack-loaders)
+[![Travis CI](https://travis-ci.org/istarkov/babel-plugin-webpack-loaders.svg?branch=master)](https://travis-ci.org/istarkov/babel-plugin-webpack-loaders)
+[![Appveyor](https://ci.appveyor.com/api/projects/status/r4rctajjme24wl0q?svg=true)](https://ci.appveyor.com/project/istarkov/babel-plugin-webpack-loaders)
 
 # babel-plugin-webpack-loaders
 
