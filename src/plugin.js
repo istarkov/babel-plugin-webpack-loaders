@@ -92,12 +92,6 @@ export default function ({ types: t }) {
         if (config.module.loaders.some((l) => l.test.test(args[0].value))) {
           const [{ value: filePath }] = args;
 
-          if (!t.isVariableDeclarator(path.parent)) {
-            throw new Error(
-                `You can't import file ${filePath} to a module scope.`
-            );
-          }
-
           const fileAbsPath = resolve.sync(
             filePath,
             {
@@ -110,7 +104,11 @@ export default function ({ types: t }) {
           const expr = processWebPackResult(webPackResult, config);
 
           if (expr !== null) {
-            path.replaceWith(expr);
+            if (expr.type === 'FunctionExpression') {
+              path.remove();
+            } else {
+              path.replaceWith(expr);
+            }
           } else {
             path.remove();
           }
