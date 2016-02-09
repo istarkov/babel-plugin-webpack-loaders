@@ -53,7 +53,7 @@ const processWebPackResult = (webPackResult, { output: { publicPath = '' } = {} 
     });
   }
 
-  return expr;
+  return traverse.removeProperties(expr);
 };
 
 export default function ({ types: t }) {
