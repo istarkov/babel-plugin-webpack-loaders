@@ -1,5 +1,5 @@
-import { resolve as fsResolve, dirname } from 'path';
-import resolve from 'resolve';
+import { resolve, dirname } from 'path';
+import { ResolverFactory, SyncNodeJsInputFileSystem } from 'enhanced-resolve';
 import { parse } from 'babylon';
 import traverse from 'babel-traverse';
 import runWebPackSync from './runWebPackSync';
@@ -60,7 +60,7 @@ export default function ({ types: t }) {
   // some strange error occurs if I move this fn outside context
   // and then run babel-node with this plugin
   const localInteropRequire = (path) => {
-    const res = require(fsResolve(process.cwd(), path));
+    const res = require(resolve(process.cwd(), path));
     if ('default' in res) {
       return res.default;
     }
@@ -82,7 +82,7 @@ export default function ({ types: t }) {
           return;
         }
 
-        const config = localInteropRequire(fsResolve(process.cwd(), configPath));
+        const config = localInteropRequire(resolve(process.cwd(), configPath));
         if (Object.keys(config).length === 0) {
           // it's possible require calls inside webpack config or bad config
           return;
@@ -92,12 +92,12 @@ export default function ({ types: t }) {
         if (config.module.loaders.some((l) => l.test.test(args[0].value))) {
           const [{ value: filePath }] = args;
 
-          const fileAbsPath = resolve.sync(
-            filePath,
-            {
-              basedir: dirname(filenameRelative),
-            }
-          );
+          const resolver = ResolverFactory.createResolver({
+            fileSystem: new SyncNodeJsInputFileSystem(),
+            ...config.resolve,
+          });
+
+          const fileAbsPath = resolver.resolveSync({}, dirname(filenameRelative), filePath);
 
           const webPackResult = runWebPackSync({ path: fileAbsPath, configPath, config, verbose });
 
