@@ -43,4 +43,9 @@ describe('runtime test', () => {
     const text = require('normalize.css/normalize.css');
     expect(text).toEqual(undefined);
   });
+
+  it('resolve.modules from webpack config should work', () => {
+    const text = require('assets/file.txt');
+    expect(text).toEqual('file.txt');
+  });
 });

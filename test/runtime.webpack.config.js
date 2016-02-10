@@ -13,6 +13,12 @@ module.exports = {
   postcss: [
     autoprefixer({ browsers: ['last 2 versions'] }),
   ],
+  resolve: {
+    modules: [
+      __dirname,
+      'node_modules',
+    ],
+  },
   module: {
     loaders: [
       {
