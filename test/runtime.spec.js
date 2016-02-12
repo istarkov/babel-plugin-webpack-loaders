@@ -53,4 +53,8 @@ describe('runtime test', () => {
     const githubMarkdown = require('github-markdown-css');
     expect(githubMarkdown['markdown-body']).toEqual('github-markdown__markdown-body');
   });
+
+  it('must work with native node modules', () => {
+    const fs = require('fs'); // eslint-disable-line
+  });
 });
