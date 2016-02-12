@@ -75,6 +75,54 @@ const localInteropRequire = (path) => {
   return res;
 };
 
+// https://github.com/webpack/node-libs-browser
+const internalNodeModules = {
+  assert: 1,
+  buffer: 1,
+  child_process: 1,
+  cluster: 1,
+  console: 1,
+  constants: 1,
+  crypto: 1,
+  dgram: 1,
+  dns: 1,
+  domain: 1,
+  events: 1,
+  fs: 1,
+  http: 1,
+  https: 1,
+  module: 1,
+  net: 1,
+  os: 1,
+  path: 1,
+  process: 1,
+  punycode: 1,
+  querystring: 1,
+  readline: 1,
+  repl: 1,
+  stream: 1,
+  string_decoder: 1,
+  sys: 1,
+  timers: 1,
+  tls: 1,
+  tty: 1,
+  url: 1,
+  util: 1,
+  vm: 1,
+  zlib: 1,
+};
+
+const resolveFilePath = (resolver, filenameAbs, filePath) => {
+  try {
+    return resolver.resolveSync({}, dirname(filenameAbs), filePath);
+  } catch (e) {
+    if (!(filePath in internalNodeModules)) {
+      throw e;
+    }
+  }
+  return undefined;
+};
+
 export default function ({ types: t }) {
   return {
     visitor: {
@@ -108,7 +156,13 @@ export default function ({ types: t }) {
         const filenameAbs = resolve(filenameRelative);
 
         const resolver = getEnhancedResolver(config);
-        const fileAbsPath = resolver.resolveSync({}, dirname(filenameAbs), filePath);
+
+        const fileAbsPath = resolveFilePath(resolver, filenameAbs, filePath);
+        // resolver.resolveSync({}, dirname(filenameAbs), filePath);
+
+        if (!fileAbsPath) {
+          return;
+        }
 
         if (config.module.loaders.some((l) => l.test.test(filePath) || l.test.test(fileAbsPath))) {
           const webPackResult = runWebPackSync({ path: fileAbsPath, configPath, config, verbose });
