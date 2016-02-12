@@ -48,4 +48,9 @@ describe('runtime test', () => {
     const text = require('assets/file.txt');
     expect(text).toEqual('file.txt');
   });
+
+  it('resolves modules by real filename setted in main package.json prop', () => {
+    const githubMarkdown = require('github-markdown-css');
+    expect(githubMarkdown['markdown-body']).toEqual('github-markdown__markdown-body');
+  });
 });

@@ -3,6 +3,7 @@ import { ResolverFactory, SyncNodeJsInputFileSystem } from 'enhanced-resolve';
 import { parse } from 'babylon';
 import traverse from 'babel-traverse';
 import runWebPackSync from './runWebPackSync';
+import memoize from './memoize';
 import { StringLiteral } from 'babel-types';
 
 const processWebPackResult = (webPackResult, { output: { publicPath = '' } = {} } = {}) => {
@@ -56,17 +57,25 @@ const processWebPackResult = (webPackResult, { output: { publicPath = '' } = {} 
   return traverse.removeProperties(expr);
 };
 
-export default function ({ types: t }) {
-  // some strange error occurs if I move this fn outside context
-  // and then run babel-node with this plugin
-  const localInteropRequire = (path) => {
-    const res = require(resolve(process.cwd(), path));
-    if ('default' in res) {
-      return res.default;
-    }
-    return res;
-  };
+// memoize resolver instance
+const getEnhancedResolver = memoize(
+  ({ resolve: configResolve }) => (
+    ResolverFactory.createResolver({
+      fileSystem: new SyncNodeJsInputFileSystem(),
+      ...configResolve,
+    })
+  )
+);
 
+const localInteropRequire = (path) => {
+  const res = require(resolve(process.cwd(), path));
+  if ('default' in res) {
+    return res.default;
+  }
+  return res;
+};
+
+export default function ({ types: t }) {
   return {
     visitor: {
       CallExpression(
@@ -76,6 +85,11 @@ export default function ({ types: t }) {
           opts: { config: configPath = './webpack.config.js', verbose = true } = {},
         }
       ) {
+        // don't process current plugin
+        if (typeof getEnhancedResolver === 'undefined') {
+          return;
+        }
+
         const { callee: { name: calleeName }, arguments: args } = path.node;
 
         if (calleeName !== 'require' || !args.length || !t.isStringLiteral(args[0])) {
@@ -88,17 +102,15 @@ export default function ({ types: t }) {
           return;
         }
 
-        // TODO add other webpack checks
-        if (config.module.loaders.some((l) => l.test.test(args[0].value))) {
-          const [{ value: filePath }] = args;
+        const [{ value: filePath }] = args;
 
-          const resolver = ResolverFactory.createResolver({
-            fileSystem: new SyncNodeJsInputFileSystem(),
-            ...config.resolve,
-          });
+        // to support babel builds (babel-node works fine)
+        const filenameAbs = resolve(filenameRelative);
 
-          const fileAbsPath = resolver.resolveSync({}, dirname(filenameRelative), filePath);
+        const resolver = getEnhancedResolver(config);
+        const fileAbsPath = resolver.resolveSync({}, dirname(filenameAbs), filePath);
 
+        if (config.module.loaders.some((l) => l.test.test(filePath) || l.test.test(fileAbsPath))) {
           const webPackResult = runWebPackSync({ path: fileAbsPath, configPath, config, verbose });
 
           const expr = processWebPackResult(webPackResult, config);

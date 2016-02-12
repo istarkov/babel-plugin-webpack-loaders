@@ -55,7 +55,7 @@ module.exports = {
         ),
         include: [
           path.join(__dirname, 'assets/withExtractText'),
-          path.join(__dirname, '../node_modules/normalize.css'),
+          path.join(__dirname, '../node_modules'),
         ],
       },
       {
