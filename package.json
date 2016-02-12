@@ -9,8 +9,8 @@
     "prebuild": "rimraf lib",
     "build": "babel src --out-dir lib",
     "preexample-build": "rimraf build",
-    "example-build": "NODE_ENV=EXAMPLES_LIB babel examples/myCoolLibrary --out-dir build/myCoolLibrary",
-    "example-run": "NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js",
+    "example-build": "BABEL_DISABLE_CACHE=1 NODE_ENV=EXAMPLES_LIB babel ./examples/myCoolLibrary --out-dir build/myCoolLibrary",
+    "example-run": "BABEL_DISABLE_CACHE=1 NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js",
     "lint": "eslint src test examples",
     "prepublish": "npm run lint && npm run build",
     "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha"
@@ -53,6 +53,7 @@
     "expect": "^1.13.4",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
+    "github-markdown-css": "^2.2.1",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
