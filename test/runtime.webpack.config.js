@@ -17,6 +17,7 @@ module.exports = {
     modules: [
       __dirname,
       'node_modules',
+      path.join(__dirname, 'resolveDir'),
     ],
   },
   module: {

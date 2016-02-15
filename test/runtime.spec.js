@@ -57,4 +57,8 @@ describe('runtime test', () => {
   it('must work with native node modules', () => {
     const fs = require('fs'); // eslint-disable-line
   });
+
+  it('must resolve js files in resolve modules', () => {
+    const fs = require('empty'); // eslint-disable-line
+  });
 });
