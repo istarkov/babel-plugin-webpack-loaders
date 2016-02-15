@@ -43,6 +43,7 @@ module.exports = {
         ],
         include: [
           path.join(__dirname, 'assets/withoutExtractText'),
+          path.join(__dirname, 'resolveDir'),
         ],
       },
       {

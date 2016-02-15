@@ -5,4 +5,8 @@ describe('deep test', () => {
     const css = require('../assets/withoutExtractText/style.css');
     expect(css).toEqual({ item: 'style__item', main: 'style__main' });
   });
+
+  it('must resolve js files in resolve modules', () => {
+    const emptyJs = require('empty'); // eslint-disable-line
+  });
 });

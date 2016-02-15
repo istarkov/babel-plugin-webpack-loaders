@@ -1,4 +1,4 @@
-import { resolve, dirname } from 'path';
+import { resolve, dirname, relative } from 'path';
 import { ResolverFactory, SyncNodeJsInputFileSystem } from 'enhanced-resolve';
 import { parse } from 'babylon';
 import traverse from 'babel-traverse';
@@ -123,6 +123,26 @@ const resolveFilePath = (resolver, filenameAbs, filePath) => {
   return undefined;
 };
 
+const isInAbsResolveModulesPath = memoize(
+  ({ resolve: { modules = [] } = {} }) => {
+    // support only absolute pathes in resolve.modules for js and jsx files
+    // because node_modules aliasing is a bad practice
+    const absPathes = modules
+      .filter(p => p === resolve(p));
+
+    return (fileAbsPath) => absPathes.some((p) => fileAbsPath.indexOf(p) === 0);
+  }
+);
+
+const isJSFile = (fileAbsPath) => {
+  const test = /\.jsx?$/;
+  return test.test(fileAbsPath);
+};
+
+const isRelativePath = (fileAbsPath) => {
+  return fileAbsPath.indexOf('.') === 0;
+};
+
 export default function ({ types: t }) {
   return {
     visitor: {
@@ -158,9 +178,26 @@ export default function ({ types: t }) {
         const resolver = getEnhancedResolver(config);
 
         const fileAbsPath = resolveFilePath(resolver, filenameAbs, filePath);
-        // resolver.resolveSync({}, dirname(filenameAbs), filePath);
 
         if (!fileAbsPath) {
+          return;
+        }
+
+        // for js and jsx files inside resolve.modules,
+        // for absolute folders only i.e. `path.join(__dirname, 'resolveDir')`
+        // replace require('xxx') to relative path i.e. `require('../resolveDir/xxx')`
+        if (
+          isJSFile(fileAbsPath) &&
+          !isRelativePath(filePath) &&
+          isInAbsResolveModulesPath(config)(fileAbsPath)
+        ) {
+          const relPath = (
+            (p) => isRelativePath(p)
+              ? p
+              : `./${p}`
+          )(relative(dirname(filenameAbs), fileAbsPath));
+
+          path.replaceWith(t.stringLiteral(relPath));
           return;
         }
 
