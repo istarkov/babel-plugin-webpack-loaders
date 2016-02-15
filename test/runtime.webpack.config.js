@@ -17,6 +17,7 @@ module.exports = {
     modules: [
       __dirname,
       'node_modules',
+      path.join(__dirname, 'resolveDir'),
     ],
   },
   module: {
@@ -42,6 +43,7 @@ module.exports = {
         ],
         include: [
           path.join(__dirname, 'assets/withoutExtractText'),
+          path.join(__dirname, 'resolveDir'),
         ],
       },
       {
