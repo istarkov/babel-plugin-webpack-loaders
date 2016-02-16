@@ -8,5 +8,6 @@ describe('deep test', () => {
 
   it('must resolve js files in resolve modules', () => {
     const emptyJs = require('empty'); // eslint-disable-line
+    expect(emptyJs.emptyFn).toEqual(() => {});
   });
 });
