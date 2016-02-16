@@ -26,7 +26,7 @@ export default ({ path, configPath, config, verbose }) => {
   );
 
   if (verbose) {
-    console.log( // eslint-disable-line
+    console.error( // eslint-disable-line
       colors.blue(`Webpack stdout for ${path}\n`) +
       colors.blue(`---------\n`) +
       `${webPackStdOut}\n` +
