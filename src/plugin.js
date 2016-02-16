@@ -197,7 +197,8 @@ export default function ({ types: t }) {
               : `./${p}`
           )(relative(dirname(filenameAbs), fileAbsPath));
 
-          path.replaceWith(t.stringLiteral(relPath));
+          // path.replaceWith(t.stringLiteral(relPath));
+          path.get('arguments.0').replaceWith(t.stringLiteral(relPath));
           return;
         }
 

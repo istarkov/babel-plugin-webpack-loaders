@@ -1,3 +1,2 @@
-export default {
-  emptyFn: () => {},
-};
+const value = 1000;
+export default value;
