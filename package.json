@@ -13,7 +13,9 @@
     "example-run": "BABEL_DISABLE_CACHE=1 NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js",
     "lint": "eslint src test examples",
     "prepublish": "npm run lint && npm run build",
-    "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha"
+    "main-test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha './test/**/*.spec.js'",
+    "warn-test": "BABEL_DISABLE_CACHE=1 mocha './test/**/*.warn.js'",
+    "test": "npm run main-test && npm run warn-test"
   },
   "repository": {
     "type": "git",
@@ -42,6 +44,7 @@
   "devDependencies": {
     "autoprefixer": "^6.2.3",
     "babel-cli": "^6.3.17",
+    "babel-core": "^6.5.2",
     "babel-eslint": "^4.1.6",
     "babel-loader": "^6.2.1",
     "babel-polyfill": "^6.3.14",
@@ -60,6 +63,7 @@
     "normalize.css": "^3.0.3",
     "postcss-loader": "^0.8.0",
     "sass-loader": "^3.1.2",
+    "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7"
   }

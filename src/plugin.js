@@ -5,6 +5,7 @@ import traverse from 'babel-traverse';
 import runWebPackSync from './runWebPackSync';
 import memoize from './memoize';
 import { StringLiteral } from 'babel-types';
+import colors from 'colors/safe';
 
 const processWebPackResult = (webPackResult, { output: { publicPath = '' } = {} } = {}) => {
   const webpackResultAst = parse(webPackResult);
@@ -143,6 +144,12 @@ const isRelativePath = (fileAbsPath) => {
   return fileAbsPath.indexOf('.') === 0;
 };
 
+const warn = memoize( // memoize to just show first warn
+  (message) => console.error( // eslint-disable-line
+    colors.yellow(message)
+  )
+);
+
 export default function ({ types: t }) {
   return {
     visitor: {
@@ -203,6 +210,15 @@ export default function ({ types: t }) {
         }
 
         if (config.module.loaders.some((l) => l.test.test(filePath) || l.test.test(fileAbsPath))) {
+          if (isJSFile(fileAbsPath)) {
+            warn(
+`babel-plugin-webpack-loader:
+js and jsx files in loaders is unsupported by webpack-loader plugin.
+all babel settings in loader will be skipped`
+            );
+            return;
+          }
+
           const webPackResult = runWebPackSync({ path: fileAbsPath, configPath, config, verbose });
 
           const expr = processWebPackResult(webPackResult, config);
