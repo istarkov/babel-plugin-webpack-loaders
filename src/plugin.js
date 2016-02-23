@@ -144,11 +144,21 @@ const isRelativePath = (fileAbsPath) => {
   return fileAbsPath.indexOf('.') === 0;
 };
 
-const warn = memoize( // memoize to just show first warn
-  (message) => console.error( // eslint-disable-line
-    colors.yellow(message)
-  )
-);
+const warn = (() => {
+  const msgs = {};
+
+  return (message) => {
+    if (message in msgs) {
+      return;
+    }
+
+    msgs[message] = true;
+
+    console.error( // eslint-disable-line
+      colors.yellow(message)
+    );
+  };
+})();
 
 export default function ({ types: t }) {
   return {
@@ -175,6 +185,14 @@ export default function ({ types: t }) {
         if (Object.keys(config).length === 0) {
           // it's possible require calls inside webpack config or bad config
           return;
+        }
+
+        if (process.env.BABEL_DISABLE_CACHE !== '1') {
+          warn(
+`babel-plugin-webpack-loader:
+To avoid caching errors you need to set BABEL_DISABLE_CACHE=1 environment variable.
+More information at issue #36`
+          );
         }
 
         const [{ value: filePath }] = args;

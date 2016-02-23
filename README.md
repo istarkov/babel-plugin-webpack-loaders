@@ -44,7 +44,7 @@ Take a look at this [minimal-example](https://github.com/istarkov/minimal-exampl
   console.log('css-modules result:', css);
   ```
 
-  with the command `NODE_ENV=EXAMPLE ./node_modules/.bin/babel-node ./example.js` and you'll get the following console output:
+  with the command `BABEL_DISABLE_CACHE=1 NODE_ENV=EXAMPLE ./node_modules/.bin/babel-node ./example.js` and you'll get the following console output:
 
   ```javascript
   css-modules result: { main: 'example__main--zYOjd', item: 'example__item--W9XoN' }
@@ -103,10 +103,12 @@ The plugin tests all `require` paths with [test regexps](https://github.com/ista
 
 3. [replaces](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/src/plugin.js#L104) the required ast with the parsed ast output
 
-# Verbose mode in config
+# Caching issues
 
-By default Babel caches compiled files, if you need to view webpack stdout output, run commands with a
-`BABEL_DISABLE_CACHE=1` prefix.
+By default Babel caches compiled files, so any changes in files processed with loaders will not be visible at subsequent builds,
+you need to run all commands with a `BABEL_DISABLE_CACHE=1` prefix.
+
+(_More information: [#T1186](https://phabricator.babeljs.io/T1186), [#36](https://github.com/istarkov/babel-plugin-webpack-loaders/issues/36)_)
 
 # Thanks to
 
