@@ -8,7 +8,7 @@ module.exports = {
     libraryTarget: 'commonjs2',
   },
   plugins: [
-    new ExtractTextPlugin(path.parse(process.argv[2]).name + '.css'),
+    new ExtractTextPlugin(path.parse(process.argv[2]).name + '.css'), // eslint-disable-line
   ],
   postcss: [
     autoprefixer({ browsers: ['last 2 versions'] }),
@@ -39,7 +39,7 @@ module.exports = {
           'style-loader',
           'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
           'postcss-loader',
-          `sass-loader?precision=10&indentedSyntax=sass`,
+          'sass-loader?precision=10&indentedSyntax=sass',
         ],
         include: [
           path.join(__dirname, 'assets/withoutExtractText'),
@@ -67,7 +67,7 @@ module.exports = {
           [
             'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
             'postcss-loader',
-            `sass-loader?precision=10&indentedSyntax=sass`,
+            'sass-loader?precision=10&indentedSyntax=sass',
           ]
         ),
         include: [path.join(__dirname, 'assets/withExtractText')],
