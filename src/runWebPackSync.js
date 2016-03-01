@@ -27,10 +27,10 @@ export default ({ path, configPath, config, verbose }) => {
 
   if (verbose) {
     console.error( // eslint-disable-line
-      colors.blue(`Webpack stdout for ${path}\n`) +
-      colors.blue(`---------\n`) +
+      colors.blue(`Webpack stdout for ${path}\n`) + // eslint-disable-line prefer-template
+      colors.blue('---------\n') +
       `${webPackStdOut}\n` +
-      colors.blue(`---------`)
+      colors.blue('---------')
     );
   }
 

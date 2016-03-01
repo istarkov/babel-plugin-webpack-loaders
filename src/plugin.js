@@ -140,9 +140,7 @@ const isJSFile = (fileAbsPath) => {
   return test.test(fileAbsPath);
 };
 
-const isRelativePath = (fileAbsPath) => {
-  return fileAbsPath.indexOf('.') === 0;
-};
+const isRelativePath = (fileAbsPath) => fileAbsPath.indexOf('.') === 0;
 
 const warn = (() => {
   const msgs = {};

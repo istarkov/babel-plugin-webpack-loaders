@@ -33,8 +33,8 @@ describe('warning test', () => {
           [
             babelPluginWebpackLoader,
             {
-              'config': './test/warning.webpack.config.js',
-              'verbose': false,
+              config: './test/warning.webpack.config.js',
+              verbose: false,
             },
           ],
         ],
