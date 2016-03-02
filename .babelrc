@@ -27,6 +27,17 @@
           }
         ]
       ]
+    },
+    "DYNAMIC_CONFIG_TEST": {
+      "plugins": [
+        [
+          "./lib/plugin.js",
+          {
+            "config": "<%= CONFIG %>",
+            "verbose": false,
+          }
+        ]
+      ]
     }
   }
 }

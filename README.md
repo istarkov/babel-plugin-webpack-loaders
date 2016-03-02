@@ -142,6 +142,8 @@ And then invoke ava something like this,
 CONFIG=$(pwd)/webpack.config.ava.js BABEL_DISABLE_CACHE=1 NODE_ENV=AVA ava --require babel-register src/**/*test.js
 ```
 
+(_More information: [#41](https://github.com/istarkov/babel-plugin-webpack-loaders/issues/41)_)
+
 # Thanks to
 
 [Felix Kling](https://github.com/fkling) and his [astexplorer](https://github.com/fkling/astexplorer)
