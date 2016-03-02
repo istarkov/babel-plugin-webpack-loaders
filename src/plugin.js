@@ -1,6 +1,7 @@
 import { resolve, dirname, relative } from 'path';
 import { ResolverFactory, SyncNodeJsInputFileSystem } from 'enhanced-resolve';
 import { parse } from 'babylon';
+import template from 'lodash.template';
 import traverse from 'babel-traverse';
 import runWebPackSync from './runWebPackSync';
 import memoize from './memoize';
@@ -179,10 +180,11 @@ export default function ({ types: t }) {
           return;
         }
 
-        const config = localInteropRequire(resolve(
-          process.cwd(),
-          process.env.BABEL_PLUGIN_WEBPACK_LOADERS_CONFIG || configPath
-        ));
+        // support env var interpolation into configPath
+        const compiledConfigPath = template(configPath)(process.env);
+        const config = compiledConfigPath === configPath
+           ? localInteropRequire(resolve(process.cwd(), compiledConfigPath))
+           : localInteropRequire(resolve(compiledConfigPath));
 
         if (Object.keys(config).length === 0) {
           // it's possible require calls inside webpack config or bad config
@@ -239,7 +241,12 @@ all babel settings in loader will be skipped`
             return;
           }
 
-          const webPackResult = runWebPackSync({ path: fileAbsPath, configPath, config, verbose });
+          const webPackResult = runWebPackSync({
+            path: fileAbsPath,
+            configPath: compiledConfigPath,
+            config,
+            verbose,
+          });
 
           const expr = processWebPackResult(webPackResult, config);
 
