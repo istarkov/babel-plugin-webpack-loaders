@@ -38,7 +38,7 @@
     "babylon": "^6.3.26",
     "colors": "^1.1.2",
     "enhanced-resolve": "^2.2.2",
-    "lodash.template": "^4.2.2",
+    "lodash": "^4.6.1",
     "rimraf": "^2.5.0",
     "shell-quote": "^1.4.3",
     "webpack": "^1.12.9"

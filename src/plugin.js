@@ -1,7 +1,7 @@
 import { resolve, dirname, relative } from 'path';
 import { ResolverFactory, SyncNodeJsInputFileSystem } from 'enhanced-resolve';
 import { parse } from 'babylon';
-import template from 'lodash.template';
+import template from 'lodash/template';
 import traverse from 'babel-traverse';
 import runWebPackSync from './runWebPackSync';
 import memoize from './memoize';
