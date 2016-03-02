@@ -125,7 +125,7 @@ The ava test runner runs each spec relative to its enclosing folder in a new pro
         [
           "babel-plugin-webpack-loaders",
           {
-            "config": "<%= CONFIG %>",
+            "config": "${CONFIG}",
             "verbose": false
           }
         ]

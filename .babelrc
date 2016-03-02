@@ -33,7 +33,7 @@
         [
           "./lib/plugin.js",
           {
-            "config": "<%= CONFIG %>",
+            "config": "${CONFIG}",
             "verbose": false,
           }
         ]
