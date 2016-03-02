@@ -14,8 +14,9 @@
     "lint": "eslint src test examples",
     "prepublish": "npm run lint && npm run build",
     "main-test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha './test/**/*.spec.js'",
+    "dynamic-config-test": "CONFIG=$(pwd)/test/runtime.webpack.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=DYNAMIC_CONFIG_TEST mocha './test/**/*.spec.js'",
     "warn-test": "BABEL_DISABLE_CACHE=1 mocha './test/**/*.warn.js'",
-    "test": "npm run main-test && npm run warn-test"
+    "test": "npm run main-test && npm run warn-test && npm run dynamic-config-test"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "babylon": "^6.3.26",
     "colors": "^1.1.2",
     "enhanced-resolve": "^2.2.2",
+    "lodash": "^4.6.1",
     "rimraf": "^2.5.0",
     "shell-quote": "^1.4.3",
     "webpack": "^1.12.9"

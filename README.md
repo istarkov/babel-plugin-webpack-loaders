@@ -110,6 +110,40 @@ you need to run all commands with a `BABEL_DISABLE_CACHE=1` prefix.
 
 (_More information: [#T1186](https://phabricator.babeljs.io/T1186), [#36](https://github.com/istarkov/babel-plugin-webpack-loaders/issues/36)_)
 
+# Dynamic config path
+
+It's possible to interpolate env vars into the WebPack config path defined in your `.babelrc` using `lodash.template` syntax. This is mainly to achieve compatibility with [ava](https://github.com/sindresorhus/ava).
+
+The ava test runner runs each spec relative to its enclosing folder in a new process which hampers this plugins ability to use a relative path for the WebPack config. An absolute path to the WebPack config will work however, and you can set one in your `.babelrc` using an env var like this,
+
+```json
+{
+  "presets": ["es2015"],
+  "env": {
+    "AVA": {
+      "plugins": [
+        [
+          "babel-plugin-webpack-loaders",
+          {
+            "config": "${CONFIG}",
+            "verbose": false
+          }
+        ]
+      ]
+    }
+  }
+}
+
+```
+
+And then invoke ava something like this,
+
+```sh
+CONFIG=$(pwd)/webpack.config.ava.js BABEL_DISABLE_CACHE=1 NODE_ENV=AVA ava --require babel-register src/**/*test.js
+```
+
+(_More information: [#41](https://github.com/istarkov/babel-plugin-webpack-loaders/issues/41)_)
+
 # Thanks to
 
 [Felix Kling](https://github.com/fkling) and his [astexplorer](https://github.com/fkling/astexplorer)
