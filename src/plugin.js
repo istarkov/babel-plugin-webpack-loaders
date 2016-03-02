@@ -179,7 +179,11 @@ export default function ({ types: t }) {
           return;
         }
 
-        const config = localInteropRequire(resolve(process.cwd(), configPath));
+        const config = localInteropRequire(resolve(
+          process.cwd(),
+          process.env.BABEL_PLUGIN_WEBPACK_LOADERS_CONFIG || configPath
+        ));
+
         if (Object.keys(config).length === 0) {
           // it's possible require calls inside webpack config or bad config
           return;
