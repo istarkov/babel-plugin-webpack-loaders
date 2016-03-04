@@ -62,7 +62,15 @@ describe('runtime test', () => {
     const emptySass = require('empty.sass'); // eslint-disable-line
   });
 
-  it('must resolve js files in resolve modules', () => {
+  it('must resolve js files in resolve modulesDirectories', () => {
     const emptyJs = require('empty'); // eslint-disable-line
+    expect(emptyJs.default).toEqual(1000);
+  });
+
+  it('must resolve js files in resolve modules', () => {
+    // we made a mistake in the past, webpack does not support modules, just modulesDirectories
+    // but we will support this name for backward compatibility
+    const emptyJs = require('emptyBackwardCompat'); // eslint-disable-line
+    expect(emptyJs.default).toEqual(1000);
   });
 });
