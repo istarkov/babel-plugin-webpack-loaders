@@ -14,7 +14,12 @@ module.exports = {
     autoprefixer({ browsers: ['last 2 versions'] }),
   ],
   resolve: {
+    // we made a mistake in the past, webpack does not support modules, just modulesDirectories
+    // but we will support this name for backward compatibility
     modules: [
+      path.join(__dirname, 'backwardCompatResolve'),
+    ],
+    modulesDirectories: [
       __dirname,
       'node_modules',
       path.join(__dirname, 'resolveDir'),

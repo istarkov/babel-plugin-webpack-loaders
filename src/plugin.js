@@ -65,6 +65,16 @@ const getEnhancedResolver = memoize(
     ResolverFactory.createResolver({
       fileSystem: new SyncNodeJsInputFileSystem(),
       ...configResolve,
+      // enhanced-resolve does not support modulesDirectories, lets add 2 modules
+      ...(
+        configResolve && (configResolve.modules || configResolve.modulesDirectories) &&
+        {
+          modules: [
+            ...(configResolve.modules || []),
+            ...(configResolve.modulesDirectories || []),
+          ],
+        }
+      ),
     })
   )
 );
@@ -126,10 +136,10 @@ const resolveFilePath = (resolver, filenameAbs, filePath) => {
 };
 
 const isInAbsResolveModulesPath = memoize(
-  ({ resolve: { modules = [] } = {} }) => {
+  ({ resolve: { modules = [], modulesDirectories = [] } = {} }) => {
     // support only absolute pathes in resolve.modules for js and jsx files
     // because node_modules aliasing is a bad practice
-    const absPathes = modules
+    const absPathes = [...modules, ...modulesDirectories]
       .filter(p => p === resolve(p));
 
     return (fileAbsPath) => absPathes.some((p) => fileAbsPath.indexOf(p) === 0);
