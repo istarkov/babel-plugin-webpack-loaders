@@ -28,6 +28,17 @@
         ]
       ]
     },
+    "TEST_BABEL": {
+      "plugins": [
+        [
+          "./lib/plugin.js",
+          {
+            "config": "./test/runtime.webpack.config.babel.js",
+            "verbose": false,
+          }
+        ]
+      ]
+    },
     "DYNAMIC_CONFIG_TEST": {
       "plugins": [
         [
