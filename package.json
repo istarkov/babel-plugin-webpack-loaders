@@ -14,9 +14,10 @@
     "lint": "eslint src test examples",
     "prepublish": "npm run lint && npm run build",
     "main-test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha './test/**/*.spec.js'",
+    "babel-config-test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST_BABEL mocha './test/**/*.spec.babel.js'",
     "dynamic-config-test": "CONFIG=$(pwd)/test/runtime.webpack.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=DYNAMIC_CONFIG_TEST mocha './test/**/*.spec.js'",
     "warn-test": "BABEL_DISABLE_CACHE=1 mocha './test/**/*.warn.js'",
-    "test": "npm run main-test && npm run warn-test && npm run dynamic-config-test"
+    "test": "npm run main-test && npm run warn-test && npm run dynamic-config-test && npm run babel-config-test"
   },
   "repository": {
     "type": "git",
