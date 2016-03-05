@@ -55,7 +55,7 @@
     "eslint": "^2.2.0",
     "eslint-config-airbnb": "^6.0.2",
     "eslint-plugin-babel": "^3.0.0",
-    "eslint-plugin-react": "^4.1.0",
+    "eslint-plugin-react": "^4.2.0",
     "expect": "^1.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
