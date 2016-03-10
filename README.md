@@ -97,11 +97,11 @@ The source of inspiration for this plugin was [babel-plugin-css-modules-transfor
 
 The plugin tests all `require` paths with [test regexps](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/src/plugin.js#L91) from the loaders in the webpack config, and then for each successful test:
 
-1. [synchronously executes webpack](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/src/runWebPackSync.js#L15-L16)
+1. [synchronously executes webpack](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/b2a097c971f8f01b53bfe5bfbcf9e0c2fa16f62b/src/runWebPackSync.js#L16-L26)
 
-2. [parses webpack output](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/src/plugin.js#L7) using babel-parse
+2. [parses webpack output](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/b2a097c971f8f01b53bfe5bfbcf9e0c2fa16f62b/src/plugin.js#L11) using babel-parse
 
-3. [replaces](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/master/src/plugin.js#L104) the required ast with the parsed ast output
+3. [replaces](https://github.com/istarkov/babel-plugin-webpack-loaders/blob/b2a097c971f8f01b53bfe5bfbcf9e0c2fa16f62b/src/plugin.js#L267) the required ast with the parsed ast output
 
 # Caching issues
 
