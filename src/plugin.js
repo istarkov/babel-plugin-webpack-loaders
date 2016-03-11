@@ -231,9 +231,11 @@ More information at issue #36`
           isInAbsResolveModulesPath(config)(fileAbsPath)
         ) {
           const relPath = (
-            (p) => isRelativePath(p)
-              ? p
-              : `./${p}`
+            (p) => (
+              isRelativePath(p)
+                ? p
+                : `./${p}`
+            )
           )(relative(dirname(filenameAbs), fileAbsPath));
 
           // path.replaceWith(t.stringLiteral(relPath));

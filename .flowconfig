@@ -1,4 +1,5 @@
 [ignore]
+.*/node_modules/.store/*
 .*/node_modules/fbjs/.*
 .*/node_modules/babel-types/.*
 .*/node_modules/babel-traverse/.*
