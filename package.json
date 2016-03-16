@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-webpack-loaders",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "babel 6 plugin which allows to use webpack loaders",
   "author": "Ivan Starkov <istarkov@gmail.com> (http://github.com/istarkov)",
   "license": "MIT",
