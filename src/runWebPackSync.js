@@ -21,7 +21,7 @@ export default ({ path, configPath, config, verbose }) => {
       webPackPath,
       path, outPath,
       '--config', configPath,
-      '--colors', '--bail',
+      '--bail',
     ])
   );
 
