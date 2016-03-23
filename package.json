@@ -53,7 +53,7 @@
     "babel-polyfill": "^6.3.14",
     "css-loader": "^0.23.1",
     "eslint": "^2.4.0",
-    "eslint-config-airbnb": "^6.0.2",
+    "eslint-config-airbnb": "^6.2.0",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^4.1.0",
     "expect": "^1.13.4",
