@@ -28,6 +28,17 @@
         ]
       ]
     },
+    "AVA_TEST": {
+      "plugins": [
+        [
+          "./lib/plugin.js",
+          {
+            "config": "${CONFIG}",
+            "verbose": false,
+          }
+        ]
+      ]
+    },
     "TEST_BABEL": {
       "plugins": [
         [

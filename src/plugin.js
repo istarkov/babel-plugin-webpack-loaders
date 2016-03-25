@@ -80,6 +80,7 @@ const getEnhancedResolver = memoize(
 );
 
 const localInteropRequire = (path) => {
+  require('babel-register');
   const res = require(resolve(process.cwd(), path));
   if ('default' in res) {
     return res.default;
