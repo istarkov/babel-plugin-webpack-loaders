@@ -8,7 +8,7 @@ module.exports = {
     libraryTarget: 'commonjs2',
   },
   plugins: [
-    new ExtractTextPlugin(path.parse(process.argv[2]).name + '.css'), // eslint-disable-line
+    new ExtractTextPlugin('out.css'), // eslint-disable-line
   ],
   postcss: [
     autoprefixer({ browsers: ['last 2 versions'] }),

@@ -17,7 +17,8 @@
     "babel-config-test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST_BABEL mocha './test/**/*.spec.babel.js'",
     "dynamic-config-test": "CONFIG=$(pwd)/test/runtime.webpack.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=DYNAMIC_CONFIG_TEST mocha './test/**/*.spec.js'",
     "warn-test": "BABEL_DISABLE_CACHE=1 mocha './test/**/*.warn.js'",
-    "test": "npm run main-test && npm run warn-test && npm run dynamic-config-test && npm run babel-config-test"
+    "ava-test": "CONFIG=$(pwd)/test/runtime.webpack.config.babel.js BABEL_DISABLE_CACHE=1 NODE_ENV=AVA_TEST ava",
+    "test": "npm run main-test && npm run warn-test && npm run dynamic-config-test && npm run babel-config-test && npm run ava-test"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",
+    "ava": "^0.13.0",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.5.2",
     "babel-eslint": "^6.0.0-beta.6",
@@ -69,5 +71,16 @@
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7"
+  },
+  "ava": {
+    "files": [
+      "./test/ava/*.js"
+    ],
+    "failFast": true,
+    "verbose": true,
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
   }
 }
