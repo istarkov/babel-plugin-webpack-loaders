@@ -21,4 +21,4 @@ test_script:
   - npm --version
   - set BABEL_DISABLE_CACHE=1
   - set NODE_ENV=TEST
-  - node node_modules\mocha\bin\mocha
+  - node node_modules\mocha\bin\mocha ./test/runtime.spec.js
