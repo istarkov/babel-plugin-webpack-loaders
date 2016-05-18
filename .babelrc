@@ -12,7 +12,7 @@
           "./lib/plugin.js",
           {
             "config": "./examples_webpack_configs/run.webpack.config.js",
-            "verbose": false,
+            "verbose": false
           }
         ]
       ]
@@ -23,7 +23,7 @@
           "./lib/plugin.js",
           {
             "config": "./test/runtime.webpack.config.js",
-            "verbose": false,
+            "verbose": false
           }
         ]
       ]
@@ -34,7 +34,7 @@
           "./lib/plugin.js",
           {
             "config": "${CONFIG}",
-            "verbose": false,
+            "verbose": false
           }
         ]
       ]
@@ -45,7 +45,7 @@
           "./lib/plugin.js",
           {
             "config": "./test/runtime.webpack.config.babel.js",
-            "verbose": false,
+            "verbose": false
           }
         ]
       ]
@@ -56,7 +56,7 @@
           "./lib/plugin.js",
           {
             "config": "${CONFIG}",
-            "verbose": false,
+            "verbose": false
           }
         ]
       ]
