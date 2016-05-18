@@ -193,9 +193,13 @@ export default function ({ types: t }) {
 
         // support env var interpolation into configPath
         const compiledConfigPath = template(configPath)(process.env);
-        const config = compiledConfigPath === configPath
+        let config = compiledConfigPath === configPath
            ? localInteropRequire(resolve(process.cwd(), compiledConfigPath))
            : localInteropRequire(resolve(compiledConfigPath));
+
+        if (typeof config === 'function') {
+          config = config();
+        }
 
         if (Object.keys(config).length === 0) {
           // it's possible require calls inside webpack config or bad config

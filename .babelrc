@@ -28,6 +28,17 @@
         ]
       ]
     },
+    "TEST_2": {
+      "plugins": [
+        [
+          "./lib/plugin.js",
+          {
+            "config": "./test/runtime.webpack2.config.js",
+            "verbose": false
+          }
+        ]
+      ]
+    },
     "AVA_TEST": {
       "plugins": [
         [

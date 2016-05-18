@@ -13,7 +13,9 @@
     "example-run": "BABEL_DISABLE_CACHE=1 NODE_ENV=EXAMPLES_RUN babel-node ./examples/runExample/run.js",
     "lint": "eslint src test examples",
     "prepublish": "npm run lint && npm run build",
-    "main-test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha './test/**/*.spec.js'",
+    "test-webpack-1": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST mocha './test/**/*.spec.js'",
+    "test-webpack-2": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST_2 mocha './test/**/*.spec2.js'",
+    "main-test": "npm run test-webpack-1 && npm run test-webpack-2",
     "babel-config-test": "BABEL_DISABLE_CACHE=1 NODE_ENV=TEST_BABEL mocha './test/**/*.spec.babel.js'",
     "dynamic-config-test": "CONFIG=$(pwd)/test/runtime.webpack.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=DYNAMIC_CONFIG_TEST mocha './test/**/*.spec.js'",
     "warn-test": "BABEL_DISABLE_CACHE=1 mocha './test/**/*.warn.js'",
@@ -42,8 +44,7 @@
     "enhanced-resolve": "^2.2.2",
     "lodash": "^4.6.1",
     "rimraf": "^2.5.0",
-    "shell-quote": "^1.4.3",
-    "webpack": "^1.12.9"
+    "shell-quote": "^1.4.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.3",
@@ -70,7 +71,11 @@
     "sass-loader": "^3.1.2",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
-    "url-loader": "^0.5.7"
+    "url-loader": "^0.5.7",
+    "webpack": "^2.1.0-beta.7"
+  },
+  "peerDependencies": {
+    "webpack": ">=1.12.9 <3.0.0"
   },
   "ava": {
     "files": [
