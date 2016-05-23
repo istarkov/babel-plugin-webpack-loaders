@@ -64,7 +64,7 @@
     "file-loader": "^0.8.5",
     "github-markdown-css": "^2.2.1",
     "json-loader": "^0.5.4",
-    "mocha": "^2.3.4",
+    "mocha": "^2.5.0",
     "node-sass": "^3.4.2",
     "normalize.css": "^4.0.0",
     "postcss-loader": "^0.8.0",
