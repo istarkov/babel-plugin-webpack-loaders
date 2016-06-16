@@ -73,4 +73,19 @@ describe('runtime test', () => {
     const emptyJs = require('emptyBackwardCompat'); // eslint-disable-line
     expect(emptyJs.default).toEqual(1000);
   });
+
+  it('must support single loader specified in require', () => {
+    const text = require('null!assets/file.txt');
+    expect(text).toEqual(null);
+  });
+
+  it('must support multiple loaders specified in require', () => {
+    const text = require('null!file!assets/file.txt');
+    expect(text).toEqual(null);
+  });
+
+  it('must support overriding loaders specified in require', () => {
+    const text = require('!!null!assets/file.txt');
+    expect(text).toEqual(null);
+  });
 });

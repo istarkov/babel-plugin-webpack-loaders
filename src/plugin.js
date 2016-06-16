@@ -214,7 +214,15 @@ More information at issue #36`
           );
         }
 
-        const [{ value: filePath }] = args;
+        const [{ value: originalFilePath }] = args;
+
+        const parts = originalFilePath.split('!');
+        const filePath = parts.pop();
+        let loaders = parts.join('!');
+
+        if (loaders) {
+          loaders += '!';
+        }
 
         // to support babel builds (babel-node works fine)
         const filenameAbs = resolve(filenameRelative);
@@ -259,7 +267,7 @@ all babel settings in loader will be skipped`
           }
 
           const webPackResult = runWebPackSync({
-            path: fileAbsPath,
+            path: loaders + fileAbsPath,
             configPath: compiledConfigPath,
             config,
             verbose,
