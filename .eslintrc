@@ -7,6 +7,8 @@
     "node": true
   },
   "rules": {
-    "no-nested-ternary": 0
+    "no-nested-ternary": 0,
+    "global-require": 0,
+    "import/no-unresolved": 0,
   }
 }
