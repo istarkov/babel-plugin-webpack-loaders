@@ -221,7 +221,7 @@ More information at issue #36`
         let loaders = parts.join('!');
 
         if (loaders) {
-            loaders += '!';
+          loaders += '!';
         }
 
         // to support babel builds (babel-node works fine)
