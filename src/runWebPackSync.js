@@ -3,7 +3,6 @@ import { readFileSync } from 'fs';
 import rimraf from 'rimraf';
 import colors from 'colors/safe';
 import { tmpdir } from 'os';
-import { quote } from 'shell-quote';
 import { execSync } from 'child_process';
 
 export default ({ path, configPath, config, verbose }) => {
@@ -18,14 +17,13 @@ export default ({ path, configPath, config, verbose }) => {
 
   // I need to run webpack via execSync because I have not found the way how to run
   // babel visitors asynchronously or run webpack compile synchronously
-  const webPackStdOut = execSync(
-    quote([
-      'node', // for windows support
-      webPackPath,
-      path, outPath,
-      '--config', configPath,
-      '--bail',
-    ])
+  const webPackStdOut = execSync([
+    'node', // for windows support
+    webPackPath,
+    path, outPath,
+    '--config', configPath,
+    '--bail',
+  ].join(' ')
   );
 
   if (verbose) {
