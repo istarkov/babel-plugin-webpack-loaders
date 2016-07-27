@@ -16,7 +16,7 @@ describe('warning test', () => {
     sandbox.restore();
   });
 
-  it('should output warning if webpack loader contains js jsx', () => {
+  it('should not output warning if webpack loader contains js jsx', () => {
     sinon.stub(console, 'error');
     const codeStr = `
       import empty from './test/resolveDir/empty';
@@ -42,7 +42,7 @@ describe('warning test', () => {
       }
     );
 
-    expect(console.error.calledOnce).toBe(true); // eslint-disable-line
-    expect(console.error.args[0][0].indexOf('babel-plugin-webpack-loader') > -1).toBe(true); // eslint-disable-line
+    expect(console.error.calledOnce).toBe(false); // eslint-disable-line
+    // expect(console.error.args[0][0].indexOf('babel-plugin-webpack-loader') > -1).toBe(true);
   });
 });
