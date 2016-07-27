@@ -53,13 +53,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          [
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
             'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]',
             'postcss-loader',
-          ]
-        ),
+          ],
+        }),
         include: [
           path.join(__dirname, 'assets/withExtractText'),
           path.join(__dirname, '../node_modules'),
@@ -67,14 +67,14 @@ module.exports = {
       },
       {
         test: /\.sass$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          [
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
             'css-loader?modules&importLoaders=2&localIdentName=[name]__[local]',
             'postcss-loader',
             'sass-loader?precision=10&indentedSyntax=sass',
-          ]
-        ),
+          ],
+        }),
         include: [path.join(__dirname, 'assets/withExtractText')],
       },
       {
