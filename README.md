@@ -3,6 +3,12 @@
 
 # babel-plugin-webpack-loaders
 
+## Important note!!!
+
+Since plugin was published, there were a lot of changes in testing software. Be sure in most(all) cases you DON'T need this plugin for testing. I highly recommend you to use [jest](https://facebook.github.io/jest/) for testing, and use [moduleNameMapper](https://facebook.github.io/jest/docs/tutorial-webpack.html) (_identity-obj-proxy, etc_) to mock CSS-Modules and other webpack loaders.
+
+## Begin
+
 This Babel 6 plugin allows you to use webpack loaders in Babel.
 It's now easy to run universal apps on the server without additional build steps, to create libraries as usual with `babel src --out-dir lib` command, to run tests without mocking-prebuilding source code.
 It just replaces `require - import` statements with `webpack loaders` results. Take a look at this Babel [build output  diff](https://github.com/istarkov/babel-plugin-webpack-loaders/commit/2a7a6d1e61ea3d052b34afd5c3abc46f075d277c#diff-4) to get the idea.
