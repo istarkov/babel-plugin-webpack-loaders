@@ -67,8 +67,7 @@ const getEnhancedResolver = memoize(
       ...configResolve,
       // enhanced-resolve does not support modulesDirectories, lets add 2 modules
       ...(
-        configResolve && (configResolve.modules || configResolve.modulesDirectories) &&
-        {
+        configResolve && (configResolve.modules || configResolve.modulesDirectories) && {
           modules: [
             ...(configResolve.modules || []),
             ...(configResolve.modulesDirectories || []),
@@ -177,7 +176,7 @@ export default function ({ types: t }) {
         path,
         {
           file: { opts: { filenameRelative } },
-          opts: { config: configPath = './webpack.config.js', verbose = true } = {},
+          opts: { config: configPath = './webpack.config.js', verbose = true, skipJs = true } = {},
         }
       ) {
         // don't process current plugin
@@ -257,7 +256,7 @@ More information at issue #36`
         }
 
         if (config.module.loaders.some((l) => l.test.test(filePath) || l.test.test(fileAbsPath))) {
-          if (isJSFile(fileAbsPath)) {
+          if (isJSFile(fileAbsPath) && skipJs) {
             // js and jsx files in loaders is unsupported by webpack-loader plugin.
             // all babel settings in loader will be skipped`
             return;
