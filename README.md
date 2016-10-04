@@ -3,7 +3,7 @@
 
 # babel-plugin-webpack-loaders
 
-## Important note!!!
+## Important note!!! ##
 
 Since plugin was published, there were a lot of changes in testing software. Be sure in most(all) cases you DON'T need this plugin for testing. I highly recommend you to use [jest](https://facebook.github.io/jest/) for testing, and use [moduleNameMapper](https://facebook.github.io/jest/docs/tutorial-webpack.html) (_identity-obj-proxy, etc_) to mock CSS-Modules and other webpack loaders.
 
