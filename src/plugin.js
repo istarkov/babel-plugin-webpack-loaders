@@ -255,7 +255,9 @@ More information at issue #36`
           return;
         }
 
-        if (config.module.loaders.some((l) => l.test.test(filePath) || l.test.test(fileAbsPath))) {
+        const wpLoaders = config.module.loaders || config.module.rules;
+
+        if (wpLoaders.some((l) => l.test.test(filePath) || l.test.test(fileAbsPath))) {
           if (isJSFile(fileAbsPath) && skipJs) {
             // js and jsx files in loaders is unsupported by webpack-loader plugin.
             // all babel settings in loader will be skipped`
