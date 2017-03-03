@@ -52,7 +52,7 @@
     "babel-core": "^6.5.2",
     "babel-eslint": "^6.0.0-beta.6",
     "babel-loader": "^6.2.1",
-    "babel-polyfill": "^6.3.14",
+    "babel-polyfill": "^6.23.0",
     "css-loader": "^0.23.1",
     "eslint": "^3.2.0",
     "eslint-config-airbnb": "^9.0.1",
