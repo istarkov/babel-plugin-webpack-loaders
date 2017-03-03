@@ -62,7 +62,7 @@
     "eslint-plugin-react": "^5.0.0",
     "expect": "^1.13.4",
     "extract-text-webpack-plugin": "^2.0.0-beta",
-    "file-loader": "^0.9.0",
+    "file-loader": "^0.10.0",
     "github-markdown-css": "^2.2.1",
     "json-loader": "^0.5.4",
     "mocha": "^2.3.4",
