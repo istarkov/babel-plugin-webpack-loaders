@@ -50,7 +50,7 @@
     "ava": "^0.15.2",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.5.2",
-    "babel-eslint": "^6.0.0-beta.6",
+    "babel-eslint": "^7.2.0",
     "babel-loader": "^6.2.1",
     "babel-polyfill": "^6.3.14",
     "css-loader": "^0.23.1",
