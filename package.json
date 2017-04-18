@@ -38,7 +38,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.4.3",
     "babel-traverse": "^6.3.26",
-    "babel-types": "^6.3.24",
+    "babel-types": "^6.8.0",
     "babylon": "^6.3.26",
     "colors": "^1.1.2",
     "enhanced-resolve": "^2.2.2",
