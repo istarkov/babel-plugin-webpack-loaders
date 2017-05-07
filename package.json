@@ -46,7 +46,7 @@
     "rimraf": "^2.5.0"
   },
   "devDependencies": {
-    "autoprefixer": "^6.2.3",
+    "autoprefixer": "^7.0.1",
     "ava": "^0.15.2",
     "babel-cli": "^6.3.17",
     "babel-core": "^6.5.2",
