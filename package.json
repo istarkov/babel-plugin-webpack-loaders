@@ -70,7 +70,7 @@
     "normalize.css": "^4.0.0",
     "null-loader": "^0.1.1",
     "postcss-loader": "^0.9.1",
-    "sass-loader": "^4.0.0",
+    "sass-loader": "^6.0.5",
     "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
